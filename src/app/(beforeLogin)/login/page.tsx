@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 export default function Login() {
   const router = useRouter();
   const session = useSession();
-  if (session) {
+  if (session.data?.user) {
     router.replace("/home");
     return null;
   }
