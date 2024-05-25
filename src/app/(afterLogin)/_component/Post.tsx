@@ -41,9 +41,7 @@ export default function Post({ noImage, post }: Props) {
             </span>
           </div>
           <div>{target.content}</div>
-          <div>
-            <PostImages post={target} />
-          </div>
+          <div>{!noImage && <PostImages post={target} />}</div>
           <ActionButtons />
         </div>
       </div>
