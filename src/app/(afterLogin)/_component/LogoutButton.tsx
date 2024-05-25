@@ -3,10 +3,12 @@
 import { signOut, useSession } from "next-auth/react";
 import style from "./logoutButton.module.css";
 import { useRouter } from "next/navigation";
-
-export default function LogoutButton() {
+import { Session } from "next-auth";
+type Props = {
+  me: Session;
+};
+export default function LogoutButton({ me }: Props) {
   const router = useRouter();
-  const { data: me } = useSession();
 
   const onLogout = () => {
     signOut({ redirect: false }).then(() => router.replace("/"));

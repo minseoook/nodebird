@@ -11,8 +11,10 @@ import {
 import PostRecommends from "./_component/PostRecommends";
 import TabDecider from "./_component/TabDecider";
 import { getPostRecommends } from "./_lib/getPostRecommends";
+import { auth } from "@/auth";
 
 export default async function Home() {
+  const session = await auth();
   const queryClient = new QueryClient();
   queryClient.prefetchInfiniteQuery({
     queryKey: ["posts", "recommends"],
@@ -26,7 +28,7 @@ export default async function Home() {
       <HydrationBoundary state={dehydratedState}>
         <TabProvider>
           <Tab />
-          <PostForm />
+          <PostForm me={session} />
           <TabDecider />
         </TabProvider>
       </HydrationBoundary>

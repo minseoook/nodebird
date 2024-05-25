@@ -20,8 +20,12 @@ export default function LoginModal() {
         password,
         redirect: false,
       });
-      console.log(res);
-      router.replace("/home");
+      console.log(res, "res");
+      if (!res?.ok) {
+        setMessage("아이디와 비밀번호가 일치하지 않습니다.");
+      } else {
+        router.replace("/home");
+      }
     } catch (err) {
       console.error(err);
       setMessage("아이디와 비밀번호가 일치하지 않습니다.");
